@@ -1,5 +1,6 @@
 #include "PlayState.h"
 #include "PauseState.h"
+#include "GameOverState.h"
 #include "Game.h"
 #include <iostream>
 
@@ -53,6 +54,19 @@ void PlayState::handleEvent(sf::Event& event)
 void PlayState::update(float dt)
 {
     float paddleSpeed = 300.f;
+    const int WIN_SCORE = 5;
+
+    if (p1Score >= WIN_SCORE)
+    {
+        game->changeState(new GameOverState(game, "P1"));
+        return;
+    }
+
+    if (p2Score >= WIN_SCORE)
+    {
+        game->changeState(new GameOverState(game, "P2"));
+        return;
+    }
 
     /// Bat movment ///
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))

@@ -14,7 +14,7 @@ PauseState::PauseState(Game* game)
 	}
 
 	pauseTitle.setFont(font);
-	pauseTitle.setCharacterSize(40);
+	pauseTitle.setCharacterSize(30);
 	pauseTitle.setFillColor(sf::Color::White);
 
 	pauseTitle.setString("Paused Game");
@@ -23,7 +23,7 @@ PauseState::PauseState(Game* game)
 
 
 	instructionText.setFont(font);
-	instructionText.setCharacterSize(20);
+	instructionText.setCharacterSize(10);
 	instructionText.setFillColor(sf::Color::White);
 
 	instructionText.setString("If you want to continue, press Enter. If you want to end the game, press Escape.");
