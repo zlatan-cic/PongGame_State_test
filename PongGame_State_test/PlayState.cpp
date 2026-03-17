@@ -1,4 +1,5 @@
 #include "PlayState.h"
+#include "PauseState.h"
 #include "Game.h"
 #include <iostream>
 
@@ -40,6 +41,13 @@ PlayState::PlayState(Game* game)
 
 void PlayState::handleEvent(sf::Event& event)
 {
+    if (event.type == sf::Event::KeyPressed)
+    {
+        if (event.key.code == sf::Keyboard::Escape)
+        {
+            game->changeState(new PauseState(game));
+        }
+    }
 }
 
 void PlayState::update(float dt)
