@@ -10,6 +10,8 @@ private:
 	sf::Font font;
 	sf::Text title;
 
+	bool startGame;
+
 public:
 	MenuState(Game* game);
 

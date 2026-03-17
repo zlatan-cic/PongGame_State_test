@@ -39,6 +39,12 @@ void Game::run()
 
 }
 
+void Game::changeState(State* newState)
+{
+	delete currentState;
+	currentState = newState;
+}
+
 Game::~Game() // OBAVEZNO!!!!!!!
 {
 	delete currentState;
