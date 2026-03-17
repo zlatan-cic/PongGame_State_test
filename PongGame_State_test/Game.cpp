@@ -2,50 +2,65 @@
 #include "MenuState.h"
 
 Game::Game()
-	: window(sf::VideoMode(800, 600), "Pong Game State patterns")
+    : window(sf::VideoMode(800, 600), "Pong Game State patterns"),
+    currentState(nullptr),
+    nextState(nullptr)
 {
-	currentState = new MenuState(this);
+    currentState = new MenuState(this);
 }
 
 void Game::run()
 {
-	while (window.isOpen())
-	{
-		sf::Event event;
-		
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
+    sf::Clock clock;
 
-			currentState->handleEvent(event);
-		}
+    while (window.isOpen())
+    {
+        float dt = clock.restart().asSeconds();
+        sf::Event event;
 
-		/////////
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			window.close();
-		}
-		////////
+        while (window.pollEvent(event))
+        {
 
-		currentState->update();
 
-		window.clear();
-		currentState->render(window);
-		window.display();
+            if (event.type == sf::Event::Closed)
+                window.close();
 
-		
-	}
+            if (event.type == sf::Event::KeyPressed &&
+                event.key.code == sf::Keyboard::Escape)
+            {
+                window.close();
+            }
 
+            currentState->handleEvent(event);
+        }
+
+        currentState->update(dt);
+
+        if (nextState != nullptr)
+        {
+            delete currentState;
+            currentState = nextState;
+            nextState = nullptr;
+        }
+
+        window.clear(sf::Color::Blue);
+        currentState->render(window);
+        window.display();
+    }
 }
 
 void Game::changeState(State* newState)
 {
-	delete currentState;
-	currentState = newState;
+    nextState = newState;
 }
 
-Game::~Game() // OBAVEZNO!!!!!!!
+Game::~Game()
 {
-	delete currentState;
+    delete currentState;
+    delete nextState;
+}
+
+sf::RenderWindow& Game::getWindow()
+{
+    return window;
 }

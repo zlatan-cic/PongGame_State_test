@@ -5,15 +5,15 @@
 class Game
 {
 private:
-	sf::RenderWindow window;
-	State* currentState; // trenutno aktivan state
+    sf::RenderWindow window;
+    State* currentState;
+    State* nextState;
 
 public:
-	Game(); // "napravi prozor"
-	~Game(); // "cisti memoriju"
+    Game();
+    ~Game();
 
-	void run(); // game loop u mainu
-	void changeState(State* newState); // menja state
-
-	sf::RenderWindow& getWindow(); 
+    void run();
+    void changeState(State* newState);
+    sf::RenderWindow& getWindow();
 };

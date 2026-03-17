@@ -15,8 +15,8 @@ private:
 public:
 	MenuState(Game* game);
 
-	void handleEvent(sf::Event& event) override;
-	void update() override;
-	void render(sf::RenderWindow& window) override;
+	void handleEvent(sf::Event& event) ;
+	void update(float dt) ;
+	void render(sf::RenderWindow& window) ;
 
 };
