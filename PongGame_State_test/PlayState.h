@@ -11,6 +11,12 @@ private:
 	sf::RectangleShape p2;
 	sf::CircleShape ball;
 
+	sf::Font font;
+	sf::Text scoreText;
+
+	int p1Score;
+	int p2Score;
+
 	float m_ballSpeed_X;
 	float m_ballSpeed_Y;
 

@@ -43,7 +43,7 @@ void Game::run()
             nextState = nullptr;
         }
 
-        window.clear(sf::Color::Blue);
+        window.clear(); 
         currentState->render(window);
         window.display();
     }
